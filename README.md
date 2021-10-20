@@ -1,18 +1,15 @@
 # libbcrypt
 A c++ wrapper around bcrypt password hashing
 
-## How to build this
-This is a CMake based project:
+## How to use
 
-```bash
-git clone https://github.com/trusch/libbcrypt
-cd libbcrypt
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-sudo ldconfig
+```CMake
+add_subdirectory(vendor/libbcrypt)
+
+add_executable(example src/main.cpp)
+
+target_include_directories(example PRIVATE vendor/libbcrypt/include)
+target_link_libraries(example PRIVATE libbcrypt)
 ```
 
 ## How to use this
@@ -20,7 +17,7 @@ sudo ldconfig
 Here an example how to use this wrapper class (you can find a slightly edited example in src/ subdirectory)
 
 ```cpp
-#include "bcrypt/BCrypt.hpp"
+#include <bcrypt/BCrypt.hpp>
 #include <iostream>
 
 int main(){
@@ -32,10 +29,4 @@ int main(){
 
 	return 0;
 }
-```
-
-build this with something like this:
-
-```bash
-g++ --std=c++11 -lbcrypt main.cpp
 ```
